@@ -20,6 +20,20 @@ add_custom_command(
 
 option(IS_LOG_SHARED "control whether Log is shared" OFF)
 
+# set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+# set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
+# set(CMAKE_SKIP_INSTALL_RPATH FALSE)
+
+set(CMAKE_SKIP_BUILD_RPATH FALSE)
+set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
+# CMAKE_INSTALL_RPATH_USE_LINK_PATH:if set to True, will append to the runtime search path (rpath) of installed binaries 
+# any directories outside the project that are in the linker search path or contain linked library files. 
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+if(APPLE)
+set(CMAKE_INSTALL_RPATH "@loader_path/../lib")
+else()
+set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
+endif()
+
 add_subdirectory(src)
 add_subdirectory(Demo)
-
