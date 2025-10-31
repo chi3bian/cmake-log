@@ -1,4 +1,4 @@
-#include "Log.hpp"
+#include "Log/Log.hpp"
 /**
  * Static methods should be defined outside the class.
  */
