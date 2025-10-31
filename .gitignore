@@ -3,3 +3,4 @@ install/
 CMakeCache.txt
 CMakeFiles/
 .vscode/
+.DS_Store

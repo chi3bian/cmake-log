@@ -1,6 +1,8 @@
 # add_subdirectory(Log)
 # add_subdirectory(Output)
 # Log
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 file(GLOB_RECURSE LOG_SOURCE
     CONFIGURE_DEPENDS
     RELATIVE ${PROJECT_SOURCE_DIR}/src/
