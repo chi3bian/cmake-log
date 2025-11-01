@@ -3,6 +3,7 @@
 
 #include <iomanip>
 #include <iostream>
+#include <print>
 
 Output_Console *Output_Console::GetInstance()
 {
@@ -15,14 +16,29 @@ Output_Console *Output_Console::GetInstance()
 }
 void Output_Console::Print(Level level, const std::string &message, const std::source_location &location)
 {
-    std::stringstream to_print;
-    Append_time(to_print);
-    Append_level(to_print, level);
-    Append_location(to_print, location);
-    Append_function(to_print, location);
-    Append_message(to_print, message);
-    to_print << std::endl;
-    std::cout << to_print.str();
+    // std::stringstream to_print;
+    // Append_time(to_print);
+    // Append_level(to_print, level);
+    // Append_location(to_print, location);
+    // Append_function(to_print, location);
+    // Append_message(to_print, message);
+    // to_print << std::endl;
+    // std::cout << to_print.str();
+
+    time_t currentTime;
+    time(&currentTime);
+
+    struct tm *local_time = localtime(&currentTime);
+
+    std::print("{0}:{1}:{2}", local_time->tm_hour, local_time->tm_min, local_time->tm_sec);
+
+    std::pair<std::string, std::string> format_code = level_format_codes[level];
+    std::print("[{}{:5}{}]", format_code.first, To_string(level), format_code.second);
+
+    std::print("[{}:{}]{}", location.file_name(),location.line(),location.function_name());
+    std::print("{}\n",message);
+
+
 }
 
 void Output_Console::Append_time(std::stringstream &to_print)
