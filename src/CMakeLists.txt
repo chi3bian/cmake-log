@@ -8,7 +8,7 @@ file(GLOB_RECURSE LOG_SOURCE
     RELATIVE ${PROJECT_SOURCE_DIR}/src/
     *.cpp)
 
-message("LOG_SOURCE = ${LOG_SOURCE}")
+
 if(IS_LOG_SHARED STREQUAL OFF)
     add_library(Log STATIC ${LOG_SOURCE})
 else()
